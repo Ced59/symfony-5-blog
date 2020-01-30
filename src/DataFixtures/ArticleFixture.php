@@ -19,7 +19,7 @@ class ArticleFixture extends Fixture
 
         for ($i = 1; $i <= 10; $i++) {
             $category = new Category();
-            $category->setTitle($faker->sentence)
+            $category->setTitle($faker->sentence(2))
                 ->setDescription($faker->paragraph());
 
             $manager->persist($category);
@@ -34,7 +34,7 @@ class ArticleFixture extends Fixture
 
                 $article->setTitle($faker->sentence())
                     ->setContent($content)
-                    ->setImage($faker->imageUrl())
+                    ->setImage($faker->image())
                     ->setCreatedAt($faker->dateTimeBetween('-6 months'))
                     ->setCategory($category);
 

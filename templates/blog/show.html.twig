@@ -4,10 +4,10 @@
 
     <article>
         <h2>{{ article.title }}</h2>
-        <div class="metadata">Ecrit le {{ article.createdAt|date('d/m/Y') }} à {{ article.createdAt|date('H:i') }} dans
+        <div class="font-italic font-weight-light text-muted mb-3">Ecrit le {{ article.createdAt|date('d/m/Y') }} à {{ article.createdAt|date('H:i') }} dans
             la catégorie "{{ article.category.title }}"
         </div>
-        <div class="content"><img src="{{ article.image }}" alt="">
+        <div class="content"><img src="{{ article.image }}" alt=""></div>
             {{ article.content|raw }}
     </article>
 
@@ -17,10 +17,13 @@
             <div class="comment">
                 <div class="row">
                     <div class="col-3">
-                        {{ comment.author }} (<small>{{ comment.createdAt | date('d/m/Y à H:i') }}</small>)
+                        {{ comment.author }} <small class="font-italic font-weight-light text-muted">(Le {{ comment.createdAt | date('d/m/Y à H:i') }})</small>
                     </div>
-                    <div class="col">
-                        {{ comment.content | raw }}
+                    <div class="col card mb-2">
+                        <div class="card-body">
+                            {{ comment.content | raw }}
+                        </div>
+
                     </div>
                 </div>
             </div>
