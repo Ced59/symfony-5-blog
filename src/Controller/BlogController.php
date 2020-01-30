@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
+use App\Entity\User;
 use App\Form\ArticleType;
 use App\Form\CommentType;
 use App\Repository\ArticleRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,16 +19,22 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog", name="blog")
      */
-    public function index(ArticleRepository $repo)
+    public function index(ArticleRepository $repo, Request $request)
     {
-        $articles = $repo->findBy(array(), array(
-            'createdAt' => 'desc'
-        ));
+        if (!$request->isXmlHttpRequest())
+        {
+            $articles = $repo->findBy(array(), array(
+                'createdAt' => 'desc'
+            ),
+                12
+            );
 
-        return $this->render('blog/index.html.twig', [
-            'controller_name' => 'BlogController',
-            'articles' => $articles,
-        ]);
+            return $this->render('blog/index.html.twig', [
+                'controller_name' => 'BlogController',
+                'articles' => $articles,
+            ]);
+        }
+
     }
 
 
@@ -44,24 +52,21 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/new", name="blog_create")
      * @Route("/blog/{id}/edit", name="blog_edit")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function form(Article $article = null, Request $request, EntityManagerInterface $manager)
     {
-        if(!$article)
-        {
+        if (!$article) {
             $article = new Article();
         }
-
 
 
         $formArticle = $this->createForm(ArticleType::class, $article);
 
         $formArticle->handleRequest($request);
 
-        if ($formArticle->isSubmitted() && $formArticle->isValid())
-        {
-            if(!$article->getId())
-            {
+        if ($formArticle->isSubmitted() && $formArticle->isValid()) {
+            if (!$article->getId()) {
                 $article->setCreatedAt(new \DateTime());
             }
 
@@ -72,7 +77,6 @@ class BlogController extends AbstractController
                 'id' => $article->getId(),
             ]);
         }
-
 
 
         return $this->render('blog/create.html.twig', [
@@ -91,16 +95,18 @@ class BlogController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = new User();
+            $user = $this->get('security.token_storage')->getToken()->getUser();
             $comment->setCreatedAt(new \DateTime())
-                ->setArticle($article);
+                ->setArticle($article)
+                ->setAuthor($user->getUsername());
             $manager->persist($comment);
             $manager->flush();
 
-            return $this->redirectToRoute('blog_show' ,[
+            return $this->redirectToRoute('blog_show', [
                 'id' => $article->getId(),
-                ]);
+            ]);
         }
 
         return $this->render('blog/show.html.twig', [
