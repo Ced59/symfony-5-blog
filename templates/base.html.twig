@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
-    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+    <link href="{{ asset('components/styles/bootstrapDarkly.css') }}" type="text/css" rel="stylesheet">
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
@@ -49,6 +49,11 @@
     {% block body %}{% endblock %}
 </div>
 
+
+
+<script type="text/javascript" src="{{ asset('components/jquery/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ asset('components/popper/popper.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('components/bootstrap/dist/js/bootstrap.js') }}"></script>
 {% block javascripts %}{% endblock %}
 </body>
 </html>

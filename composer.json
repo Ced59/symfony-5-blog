@@ -5,6 +5,7 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "components/jquery": "^3.4",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "5.0.*",
@@ -28,6 +29,7 @@
         "symfony/validator": "5.0.*",
         "symfony/web-link": "5.0.*",
         "symfony/yaml": "5.0.*",
+        "twbs/bootstrap": "^4.4",
         "twig/extra-bundle": "3.*",
         "twig/string-extra": "3.*",
         "twig/twig": "^3.0"
