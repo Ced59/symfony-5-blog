@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Form\ArticleType;
 use App\Form\CommentType;
 use App\Repository\ArticleRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,11 +20,15 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog", name="blog")
      */
-    public function index(ArticleRepository $repo, Request $request)
+    public function index(ArticleRepository $repo, Request $request, PaginatorInterface $paginator)
     {
-        $articles = $repo->findBy(array(), array(
+        $allArticles = $repo->findBy(array(), array(
             'createdAt' => 'desc'
-        ),
+        ));
+
+        $articles = $paginator->paginate(
+            $allArticles,
+            $request->query->getInt('page', 1),
             12
         );
 
