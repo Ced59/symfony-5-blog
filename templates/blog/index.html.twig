@@ -24,10 +24,10 @@
                     </div>
                 </div>
 
-                    <div class="text-center pb-3">
+                <div class="text-center pb-3">
                     <a href="{{ path('blog_show', {'id' : article.id }) }}" class="btn btn-secondary">lire la
                         suite</a>
-                    </div>
+                </div>
 
 
             </article>
@@ -35,6 +35,10 @@
 
         {% endfor %}
 
-
     </section>
+
+    <div class="offset-3 col-6">
+        {{ knp_pagination_render(articles, 'bootstrap-pagination/twitter_bootstrap_v4_pagination.html.twig') }}
+    </div>
+
 {% endblock %}

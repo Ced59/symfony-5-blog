@@ -4,26 +4,49 @@
 
     <article>
         <h2>{{ article.title }}</h2>
-        <div class="font-italic font-weight-light text-muted mb-3">Ecrit le {{ article.createdAt|date('d/m/Y') }} à {{ article.createdAt|date('H:i') }} dans
+        <div class="font-italic font-weight-light text-muted mb-3">Ecrit le {{ article.createdAt|date('d/m/Y') }}
+            à {{ article.createdAt|date('H:i') }} dans
             la catégorie "{{ article.category.title }}"
         </div>
-        <div class="content"><img src="{{ article.image }}" alt=""></div>
-            {{ article.content|raw }}
+
+        <div class="row">
+            <img class="col-3 img-thumbnail" src="{{ article.image }}" alt="">
+            <div class="col-7 ml-3">
+                <p>{{ article.content|raw }}</p>
+
+                <div class="offset-2 mt-3">
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('blog_edit', {'id' : article.id}) }}" class="btn btn-primary">Editer</a>
+                    {% endif %}
+
+                    <a href="{{ path('blog') }}" class="btn btn-primary">Retour aux articles</a>
+                </div>
+            </div>
+
+        </div>
+
+
     </article>
+
+
 
     <section id="commentaires">
         <h1>{{ article.comments | length }} Commentaires:</h1>
         {% for comment in article.comments %}
             <div class="comment">
                 <div class="row">
-                    <div class="col-3">
-                        {{ comment.author }} <small class="font-italic font-weight-light text-muted">(Le {{ comment.createdAt | date('d/m/Y à H:i') }})</small>
+                    <div class="col-3 card text-white bg-danger mb-2">
+                        <div class="card-body">
+                            <p class="card-text">{{ comment.author }}</p> <br>
+                            <small class="card-footer font-italic font-weight-light text-muted">
+                                (Le {{ comment.createdAt | date('d/m/Y à H:i') }})
+                            </small>
+                        </div>
                     </div>
                     <div class="col card mb-2">
                         <div class="card-body">
                             {{ comment.content | raw }}
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -32,12 +55,6 @@
         {% if app.user %}
 
             {{ form_start(commentForm) }}
-            {{ form_row(commentForm.author,
-                {
-                    'attr' : {
-                    'placeholder': "Votre Nom"
-                }
-                }) }}
             {{ form_row(commentForm.content,
                 {
                     'attr' : {
@@ -53,9 +70,6 @@
         {% endif %}
     </section>
 
-    <div class="offset-2 col-8">
-        <a href="{{ path('blog_edit', {'id' : article.id}) }}" class="btn btn-primary">Editer</a>
-        <a href="{{ path('blog') }}" class="btn btn-primary">Retour</a></div>
-    </div>
+
 
 {% endblock %}
