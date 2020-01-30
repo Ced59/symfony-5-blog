@@ -21,19 +21,16 @@ class BlogController extends AbstractController
      */
     public function index(ArticleRepository $repo, Request $request)
     {
-        if (!$request->isXmlHttpRequest())
-        {
-            $articles = $repo->findBy(array(), array(
-                'createdAt' => 'desc'
-            ),
-                12
-            );
+        $articles = $repo->findBy(array(), array(
+            'createdAt' => 'desc'
+        ),
+            12
+        );
 
-            return $this->render('blog/index.html.twig', [
-                'controller_name' => 'BlogController',
-                'articles' => $articles,
-            ]);
-        }
+        return $this->render('blog/index.html.twig', [
+            'controller_name' => 'BlogController',
+            'articles' => $articles,
+        ]);
 
     }
 
