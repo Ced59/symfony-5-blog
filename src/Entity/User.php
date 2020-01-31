@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Normalizer\JsonSerializableNormalizer;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -124,6 +126,20 @@ class User implements UserInterface
         $this->roles = $roles;
 
         return $this;
+    }
+
+    public function hasRole($role)
+    {
+        $roles = $this->getRoles();
+
+        foreach ($roles as $item)
+        {
+            if ($item == $role)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 
