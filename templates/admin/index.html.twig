@@ -29,10 +29,11 @@
                         <th scope="row">{{ user.id }}</th>
                         <td>{{ user.username }}</td>
                         <td>{{ user.email }}</td>
-                        <form>
+                        <form method="post" action="{{ path('admin_show') }}" name="">
                             <td>
                                 <input type="checkbox"
-                                       value="1"
+                                       value="ROLE_ADMIN"
+                                       name="role1"
                                         {% if user.role('ROLE_ADMIN') %}
                                             checked
                                         {% endif %}
@@ -41,7 +42,8 @@
                             <td>
                                 <input type="checkbox"
 
-                                       value="1"
+                                       value="ROLE_USER"
+                                       name="role2"
                                         {% if user.role('ROLE_USER') %}
                                             checked
                                         {% endif %}
@@ -50,6 +52,7 @@
                             <td>
                                 <button type="submit" class="btn btn-danger">Valider</button>
                             </td>
+                            <input type="hidden" name="idUser" value="{{ user.id }}">
                         </form>
                     </tr>
                 {% endfor %}
