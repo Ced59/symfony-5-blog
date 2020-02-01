@@ -1,0 +1,14 @@
+<application>
+  <component name="ProjectManager">
+    <defaultProject>
+      <component name="ComposerSettings">
+        <execution>
+          <executable />
+        </execution>
+      </component>
+      <component name="PropertiesComponent">
+        <property name="last_opened_file_path" value="$USER_HOME$/Documents/IntelliJProjects" />
+      </component>
+    </defaultProject>
+  </component>
+</application>
