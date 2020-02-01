@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Form\AdminRoleType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,9 +17,16 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin", name="admin_show")
      */
-    public function index(UserRepository $repo, Request $request, EntityManagerInterface $manager)
+    public function index(UserRepository $repo, Request $request, EntityManagerInterface $manager, PaginatorInterface $paginator)
     {
-        $users = $repo->findAll();
+        $allUsers = $repo->findAll();
+
+        $users = $paginator->paginate(
+            $allUsers,
+            $request->query->getInt('page', 1),
+            20
+        );
+
 
         if ($request->isMethod('post'))
         {
