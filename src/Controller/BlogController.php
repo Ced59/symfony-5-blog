@@ -55,12 +55,18 @@ class BlogController extends AbstractController
      * @Route("/blog/new", name="blog_create")
      * @Route("/blog/{id}/edit", name="blog_edit")
      * @IsGranted("ROLE_ADMIN")
+     * @param Article|null $article
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
      */
     public function form(Article $article = null, Request $request, EntityManagerInterface $manager)
     {
         if (!$article) {
             $article = new Article();
         }
+
 
 
         $formArticle = $this->createForm(ArticleType::class, $article);
