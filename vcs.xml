@@ -22,9 +22,13 @@
           <option name="url" value="https://github.com/liorchamla/cours-react-in-php.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/Ced59/evaluation-java.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
-    <option name="cloneParentDir" value="D:\IntelliJProjects" />
+    <option name="cloneParentDir" value="C:\" />
   </component>
   <component name="Vcs.Log.App.Settings">
     <option name="COLUMN_ORDER">
