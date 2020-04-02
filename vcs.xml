@@ -34,6 +34,10 @@
           <option name="url" value="https://github.com/Ced59/evaluation-java" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/rose-line/valarep-spring-blahmiton" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Java" />
