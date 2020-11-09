@@ -66,6 +66,10 @@
           <option name="url" value="https://gitlab.com/les-mercier/exception-exo.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://gitlab.com/les-mercier/mars-rover.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Java" />
