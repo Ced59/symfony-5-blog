@@ -82,6 +82,10 @@
           <option name="url" value="https://gitlab.com/les-mercier/junit-exo-collection.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/Ced59/breakout-game" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Java" />
