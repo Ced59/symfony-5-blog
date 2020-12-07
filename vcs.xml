@@ -90,6 +90,10 @@
           <option name="url" value="https://gitlab.com/les-mercier/junit-exo-map.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://gitlab.com/arnaud.mercier.59/poo-inheritance" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Java" />
