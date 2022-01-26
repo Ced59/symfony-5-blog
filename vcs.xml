@@ -126,6 +126,10 @@
           <option name="url" value="https://github.com/FovetAlainCnam/tp4" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/Ced59/ZeldaGame" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Java" />
